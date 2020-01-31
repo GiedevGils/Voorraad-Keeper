@@ -1,0 +1,31 @@
+<h1>Categories</h1>
+<hr>
+
+<div class="category" *ngFor="let category of categories">
+	<h2>{{category.name}}</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Aantal</th>
+				<th>Eenheid</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let product of category.products">
+				<td>{{product.name}}</td>
+				<td>{{product.numberOfThisProductStored}}</td>
+				<td>{{product.amountOfUnit}} {{product.unit}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+
+<div class="fixed-action-btn" title="Opslaan" (click)="save()">
+	<a class="btn-floating btn-large blue">
+		<i class="large material-icons">save</i>
+	</a>
+</div>
