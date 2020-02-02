@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '@core/services/product.service';
 import { Category } from '@core/models/category.model';
+import { Unit } from '@core/enums/units.enum'
 
 @Component({
 	selector: 'app-product-list',

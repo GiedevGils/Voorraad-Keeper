@@ -1,0 +1,25 @@
+{
+  "name": "voorraad-api",
+  "version": "0.0.1",
+  "description": "The API to keep track of everything related to storage in one's home",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiedevGils/Voorraad-Keeper.git"
+  },
+  "author": "Giede van Gils",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GiedevGils/Voorraad-Keeper/issues"
+  },
+  "homepage": "https://github.com/GiedevGils/Voorraad-Keeper#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

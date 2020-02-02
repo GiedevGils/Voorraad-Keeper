@@ -16,7 +16,7 @@
 			<tr *ngFor="let product of category.products">
 				<td>{{product.name}}</td>
 				<td>{{product.numberOfThisProductStored}}</td>
-				<td>{{product.amountOfUnit}} {{product.unit}}</td>
+				<td>{{product.amountOfUnit}} {{ Unit[product.unit] }}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,0 +1,11 @@
+{
+    "categories": [
+        {
+            "name": "Cupboard",
+            "products": [
+                {"name": "Pasta", "numberOfThisProductStored": 1, "amountOfUnit": 250, "unit": Unit.gr},
+                {"name": "Kippensoep", "numberOfThisProductStored": 1, "amountOfUnit": 1, "unit": Unit.L}
+            ]
+        }
+    ]
+}
