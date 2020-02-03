@@ -4,7 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '@core/services/product.service';
 import { Category } from '@core/models/category.model';
 import { Unit } from '@core/enums/units.enum';
-import { MatTable } from '@angular/material';
+import { MatTable, MatDialog } from '@angular/material';
+import { NewProductComponent } from '../new-product/new-product.component';
+import { Product } from '@core/models/product.model';
 
 @Component({
 	selector: 'app-product-list',
@@ -22,7 +24,8 @@ export class ProductListComponent implements OnInit {
 
 	constructor(
 		private productService: ProductService,
-		private toastrService: ToastrService) { }
+		private toastrService: ToastrService,
+		public dialog: MatDialog) { }
 
 	ngOnInit() {
 		this.getCategories();
@@ -37,8 +40,10 @@ export class ProductListComponent implements OnInit {
 		return index;
 	}
 
-	delete(category: Category, productIndex: number) {
+	delete(category: Category, product: Product) {
+		
 		let catIndex = this.categories.indexOf(category);
+		let productIndex = this.categories[catIndex].products.indexOf(product)
 		this.categories[catIndex].products.splice(productIndex, 1);
 		this.save();
 		this.rerender();
@@ -57,6 +62,22 @@ export class ProductListComponent implements OnInit {
 	rerender() {
 		this.tables.forEach(table => {
 			table.renderRows();
+		})
+	}
+
+	openDialog(category: Category): void {
+		const dialogRef = this.dialog.open(NewProductComponent, {
+			width: '75%',
+			data: {category: category, units: this.units}
+		});
+
+		dialogRef.afterClosed().subscribe( res => {
+			if(res) {
+				let catIndex = this.categories.indexOf(category);
+				this.categories[catIndex].products.push(res);
+				this.save();
+				this.rerender();
+			} 
 		})
 	}
 

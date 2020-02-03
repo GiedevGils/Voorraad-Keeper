@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material';
 
 
 
@@ -36,10 +37,11 @@ import { MatButtonModule } from '@angular/material/button';
 	MatTableModule,
 	MatInputModule,
 	MatSelectModule,
-	MatButtonModule
-
+	MatButtonModule,
+	MatDialogModule
   ],
   providers: [ CookieService ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [ NewProductComponent ]
 })
 export class AppModule { }

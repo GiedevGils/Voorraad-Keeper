@@ -3,7 +3,7 @@
 
 <div class="category" *ngFor="let category of categories">
 	<h2>{{category.name}}</h2>
-	<button mat-raised-button class="mat-primary add-category" disabled >
+	<button mat-raised-button class="mat-primary add-category" (click)="openDialog(category)" >
 		<i class="material-icons add-category-icon">add</i> <div class="add-category-content">Nieuw Artikel</div>
 	</button>
 
