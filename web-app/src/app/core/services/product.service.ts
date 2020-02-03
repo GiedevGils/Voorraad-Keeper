@@ -21,6 +21,10 @@ export class ProductService {
 		{name: "Kelder", products: [
 			{name: "Pasta", numberOfThisProductStored: 1, amountOfUnit: 250, unit: Unit.gr},
 			{name: "Kippensoep", numberOfThisProductStored: 1, amountOfUnit: 1, unit: Unit.L}
+		]},
+		{name: "Koelkast", products: [
+			{name: "Cola", numberOfThisProductStored: 2, amountOfUnit: 2, unit: Unit.L},
+			{name: "Mona Toetje", numberOfThisProductStored: 1, amountOfUnit: 2, unit: Unit.pak}
 		]} 
 	];
 
@@ -30,16 +34,17 @@ export class ProductService {
 	}
 
 	// Post
-	public saveProduct(category: Category, product: Product): void {
-		this.categories.find(cat => cat.name == category.name).products.push(product);
+	public saveProduct( categories: Category[] ): void {
+		this.categories = categories;
 		this.save(categoryCookieName, lastModifiedCookieName);
+		console.log(this.categories);
 	}
 
 
 
 	private save(catCookieName: string, lastModifiedCookieName: string): void {
-		this.cookies.set( catCookieName, JSON.stringify(this.categories).trim() );
-		this.cookies.set( lastModifiedCookieName, Date.now().toString().trim() );
+		this.cookies.set( catCookieName, JSON.stringify(this.categories) );
+		this.cookies.set( lastModifiedCookieName, Date.now().toString() );
 	}
 
 	private retrieve(cookieName: string): Observable<Category[]> {

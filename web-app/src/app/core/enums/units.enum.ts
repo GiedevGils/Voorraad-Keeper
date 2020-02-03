@@ -1,6 +1,7 @@
 export enum Unit {
-	gr,
-	kg,
-	mL,
-	L
+	gr = "gram",
+	kg = "kilogram",
+	mL = "milliliter",
+	L = "liter",
+	pak = "pak"
 }

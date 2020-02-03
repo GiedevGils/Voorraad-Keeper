@@ -1,15 +1,9 @@
 <!-- Header -->
 
-<nav>
-	<div class="nav-wrapper">
-		<ul id="nav-mobile center">
-			<li><a>Nieuwe Categorie</a></li>
-			<li><a class="right gitlab-link" href="https://gitlab.com/GiedevGils/planespotter-pwa" target="_blank">See
-					the code on GitHub</a></li>
-		</ul>
-	</div>
-</nav>
+<mat-toolbar>
+	{{title}}
+</mat-toolbar>
 
 <!-- Content -->
 
-<app-product-list></app-product-list>
+<app-product-list mat-app-background></app-product-list>
