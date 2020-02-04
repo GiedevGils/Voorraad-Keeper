@@ -10,14 +10,13 @@ h2 {
     font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
     font-weight: 100;
     font-size: 28px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	display: inline-block;
 }
 
 .category {
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .fixed-action-btn :hover {
@@ -28,8 +27,6 @@ table {
 	width: 100%;
 	table-layout: fixed;
 }
-
-
 
 mat-form-field {
 	margin-right: 2%;
@@ -62,10 +59,30 @@ mat-form-field {
 	bottom: 1em;
 }
 
-.add-category {
+.add-product {
 	display: inline;
 	top: -0.3em;
 	margin-left: 1em;
+}
+
+.add-product-icon {
+	display: inline-flex;
+}
+
+.add-product-content {
+	display: inline-flex;
+	margin-top: 0.2em;
+}
+
+hr {
+	width: 99%;
+}
+
+.add-category {
+	top: -0.3em;
+	margin-left: 1em;
+	float: right;
+	margin-right: 2em;
 }
 
 .add-category-icon {
@@ -74,5 +91,4 @@ mat-form-field {
 
 .add-category-content {
 	display: inline-flex;
-	margin-top: 0.2em;
 }

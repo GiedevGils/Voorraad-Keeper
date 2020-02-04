@@ -1,1 +1,1 @@
-[{"name":"Cupboard","products":[{"name":"Pasta","numberOfThisProductStored":12,"amountOfUnit":250,"unit":"gram"},{"name":"Kippensoep","numberOfThisProductStored":1,"amountOfUnit":1,"unit":"liter"}]}]
+[{"name":"Kast","products":[{"name":"Pasta","numberOfThisProductStored":555555,"amountOfUnit":250,"unit":"gram"},{"name":"Kippensoep","numberOfThisProductStored":11111,"amountOfUnit":1,"unit":"liter"}]},{"name":"Koelkast","products":[{"name":"test","numberOfThisProductStored":2222222,"amountOfUnit":1,"unit":"liter"}]}]

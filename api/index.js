@@ -26,11 +26,8 @@ app.get('/dummy', (req, res) => {
 
 app.get('/data', (req, res) => {
 	// Get data again, it might have changed in the meantime
-	lastModified = require('./db/lastmodified.json');
-	official_data = require('./db/storage.json');
-
-	console.log(lastModified);
-	
+	lastModified = JSON.parse(fs.readFileSync('./db/lastModified.json', 'utf-8'));
+	official_data = JSON.parse(fs.readFileSync('./db/storage.json', 'utf-8'));
 
 	if( isEmpty(official_data) ) {
 		official_data = [];
@@ -49,7 +46,7 @@ app.post('/save', (req, res) => {
 
 	fs.writeFile('./db/storage.json', JSON.stringify(official_data), 'utf8', () => {
 
-		fs.writeFile('./db/lastmodified.json', JSON.stringify(new Date().getTime()), 'utf8', () => {
+		fs.writeFile('./db/lastmodified.json', lastModified, 'utf8', () => {
 			console.log(new Date().getTime() + " - writefile finished. lastmodified changed")
 		});
 
