@@ -16,6 +16,10 @@
 		<i class="material-icons add-product-icon">add</i> <div class="add-product-content">Nieuw Artikel</div>
 	</button>
 
+	<button mat-stroked-button class="mat-warn add-product" (click)="delete(category)" >
+		<i class="material-icons add-product-icon">delete</i> <div class="add-product-content">Verwijder Categorie</div>
+	</button>
+
 	<table #table mat-table [dataSource]="category.products" class="mat-elevation-z8">
 		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 		<tr mat-row *matRowDef="let rowData; columns: columnsToDisplay"></tr>

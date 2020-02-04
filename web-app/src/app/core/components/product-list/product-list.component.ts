@@ -49,11 +49,19 @@ export class ProductListComponent implements OnInit {
 		return index;
 	}
 
-	delete(category: Category, product: Product) {
+	delete(category?: Category, product?: Product) {
 		
-		let catIndex = this.categories.indexOf(category);
-		let productIndex = this.categories[catIndex].products.indexOf(product)
-		this.categories[catIndex].products.splice(productIndex, 1);
+		if (category && product) {
+			let catIndex = this.categories.indexOf(category);
+			let productIndex = this.categories[catIndex].products.indexOf(product)
+			this.categories[catIndex].products.splice(productIndex, 1);
+		}
+
+		else if (category && !product) {
+			let catIndex = this.categories.indexOf(category);
+			this.categories.splice(catIndex, 1);
+		}
+
 		this.save();
 		this.rerender();
 	}

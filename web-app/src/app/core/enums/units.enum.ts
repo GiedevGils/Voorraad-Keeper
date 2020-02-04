@@ -3,5 +3,6 @@ export enum Unit {
 	kg = "kilogram",
 	mL = "milliliter",
 	L = "liter",
-	pak = "pak"
+	pak = "pak(ken)",
+	fles = "fles(sen)"
 }

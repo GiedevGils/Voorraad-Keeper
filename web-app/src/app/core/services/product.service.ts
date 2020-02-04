@@ -102,7 +102,6 @@ export class ProductService {
 		this.cookies.set(lastModifiedCookieName, currentTime);
 
 		this.http.post(webUrl + '/save', { lastModified: currentTime, categories: this.categories }).pipe(
-			tap(_ => console.log("saved to the server")),
 			catchError(this.handleError<void>(1) )
 		).subscribe();
 	}
