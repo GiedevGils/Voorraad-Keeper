@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit {
 	unitEnum = Unit;
 	units = [];
 	columnsToDisplay = ['name', 'numberOfThisProductStored', 'amountOfUnit', 'delete'];
+	lastModifiedCookie: string;
 
 	@ViewChildren('table') tables: QueryList<MatTable<any>>;
 
@@ -32,8 +33,33 @@ export class ProductListComponent implements OnInit {
 		this.units = Object.values(this.unitEnum);
 	}
 
-	getCategories() {
-		this.productService.getCategories().subscribe((data) => this.categories = data);
+	// No return because it assigns to the this.categories variable, which is automagically updated
+	getCategories(): any {
+		this.productService.getCategories().subscribe((data) => {
+
+			this.productService.retrieveCookie("lastModified").subscribe((cookie) => this.lastModifiedCookie = cookie);
+
+
+			// If the data from the server was modified later than the cookie, use the server data. Else, use the cookie data
+			if ( data['lastModified'] >=  this.lastModifiedCookie ) {
+
+
+				// data.data is the categories from the server
+				this.categories = data['data'];
+				console.log("Server data was more recent. Server data loaded.")
+			} 
+			else {
+				this.productService.getCategories(1).subscribe((data) => {
+					console.log("Cookie data was more recent. Cookie data loaded.")
+					this.categories = data;
+				})
+			}
+
+			if (this.categories.length == 0 ) {
+				this.toast("Er zijn geen gegevens gevonden. Begin met invullen!");
+			}
+		});
+
 	}
 
 	trackByIndex(index: number, obj: any): any {
@@ -51,12 +77,8 @@ export class ProductListComponent implements OnInit {
 
 	save() {
 		this.productService.saveProduct( this.categories );
+		this.toast("Gegevens zijn opgeslagen");
 
-		this.toastrService.info('Gegevens zijn opgeslagen', '', {
-			timeOut: 3000,
-			progressBar: true,
-			closeButton: true
-		})
 	}
 
 	rerender() {
@@ -78,6 +100,14 @@ export class ProductListComponent implements OnInit {
 				this.save();
 				this.rerender();
 			} 
+		})
+	}
+
+	toast(title: string, content?: string) {
+		this.toastrService.info(title, content, {
+			timeOut: 3000,
+			progressBar: true,
+			closeButton: true
 		})
 	}
 

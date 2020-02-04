@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -31,6 +32,7 @@ import { MatDialogModule } from '@angular/material';
 	BrowserAnimationsModule,
 	ToastrModule.forRoot(),
 	FormsModule,
+	HttpClientModule,
 
 	// CSS imports
 	MatToolbarModule,
