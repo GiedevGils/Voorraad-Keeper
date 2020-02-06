@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material';
 import { NewCategoryComponent } from './core/components/new-category/new-category.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -42,7 +44,8 @@ import { NewCategoryComponent } from './core/components/new-category/new-categor
 	MatInputModule,
 	MatSelectModule,
 	MatButtonModule,
-	MatDialogModule
+	MatDialogModule,
+	ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ CookieService ],
   bootstrap: [ AppComponent ],

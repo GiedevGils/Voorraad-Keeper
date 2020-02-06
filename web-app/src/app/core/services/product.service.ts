@@ -7,10 +7,12 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Unit } from '@core/enums/units.enum';
 import { HttpClient } from '@angular/common/http';
 
+import { Config } from '@assets/config/config';
+
 
 const categoryCookieName = 'categories';
 const lastModifiedCookieName = 'lastModified';
-const webUrl = 'http://localhost:3000';
+const webUrl = "http://" + Config.apiUrl + ":" + Config.apiPort;
 
 @Injectable({
 	providedIn: 'root'
@@ -55,6 +57,10 @@ export class ProductService {
 					if (body['lastModified'] >= lastModifiedCookie) {
 						// Return the server
 						console.log("Server data was more recent. Server data loaded.");
+
+						// Save this new server data in the cookie automatically
+						this.save(categoryCookieName, lastModifiedCookieName, false);
+					
 						return body['data'];
 					} else {
 						// Else, return the cookie
@@ -71,6 +77,7 @@ export class ProductService {
 	// I wanted to make this better, but I couldn't find a way to return the cookie in the 
 	private handleError<T>(source?: number, result?: T) {
 		return (): Observable<T> => {
+
 
 			let item;
 			
@@ -95,15 +102,19 @@ export class ProductService {
 	}
 
 	// Post
-	private save(catCookieName: string, lastModifiedCookieName: string): void {
+	private save(catCookieName: string, lastModifiedCookieName: string, online = true): void {
 		let currentTime = JSON.stringify(new Date().getTime());
 
-		this.cookies.set(catCookieName, JSON.stringify(this.categories));
-		this.cookies.set(lastModifiedCookieName, currentTime);
+		console.log("Saved data offline")
+		this.cookies.set(catCookieName, JSON.stringify(this.categories),  undefined, undefined, undefined, true);
+		this.cookies.set(lastModifiedCookieName, currentTime,  undefined, undefined, undefined, true);
 
-		this.http.post(webUrl + '/save', { lastModified: currentTime, categories: this.categories }).pipe(
-			catchError(this.handleError<void>(1) )
-		).subscribe();
+		if (online) {
+			console.log("Saved data online")
+			this.http.post(webUrl + '/save', { lastModified: currentTime, categories: this.categories }).pipe(
+				catchError((err) => this.handleError<void>(1) )
+			).subscribe();
+		}
 	}
 
 	public retrieveCookie(cookieName: string): Observable<any> {
