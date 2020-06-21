@@ -1,80 +1,31 @@
 <h1>Categorieën</h1>
 <button mat-stroked-button class="mat-basic add-category" (click)="openNewCategoryDialog()">
-	<i class="material-icons add-category-icon">add</i> <div class="add-category-content">Nieuwe Categorie</div>
+	<i class="material-icons add-category-icon">add</i>
+	<div class="add-category-content">Nieuwe Categorie</div>
 </button>
 <hr>
 
-<div class="category" *ngFor="let category of categories">
+<div class="card" *ngFor="let category of categories">
+	<div class="container">
+		<div class="card-header">
+			<h2>{{category.name}}</h2>
+			<i class="material-icons delete-category-icon" (click)="delete(category)">delete</i>
+			<i class="material-icons edit-category-icon">edit</i>
 
-	<h2>
-		<mat-form-field style="width: 100%;">
-			<input matInput class="category-header" type="text" [(ngModel)]="category.name" />	
-		</mat-form-field>
-	</h2>
+		</div>
 
-	<button mat-stroked-button class="mat-primary add-product" (click)="openNewProductDialog(category)" >
-		<i class="material-icons add-product-icon">add</i> <div class="add-product-content">Nieuw Artikel</div>
-	</button>
+		<dx-data-grid [dataSource]="category.products" (onRowUpdated)="save()">
+			<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+			</dxo-editing>
 
-	<button mat-stroked-button class="mat-warn add-product" (click)="delete(category)" >
-		<i class="material-icons add-product-icon">delete</i> <div class="add-product-content">Verwijder Categorie</div>
-	</button>
-
-	<table #table mat-table [dataSource]="category.products" class="mat-elevation-z8">
-		<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-		<tr mat-row *matRowDef="let rowData; columns: columnsToDisplay"></tr>
-
-		<!-- Name -->
-		<ng-container matColumnDef="name"	>
-			<th mat-header-cell *matHeaderCellDef> Naam </th>
-			<td mat-cell *matCellDef="let product"> 
-				<mat-form-field>
-					<input matInput type="text" [(ngModel)]="product.name" />	
-				</mat-form-field>
-			</td>
-		</ng-container>
-
-		<!-- Amount of product -->
-		<ng-container matColumnDef="numberOfThisProductStored">
-			<th mat-header-cell *matHeaderCellDef> Hoeveelheid </th>
-			<td mat-cell *matCellDef="let product"> 
-				<mat-form-field>
-					<input matInput type="number" [(ngModel)]="product.numberOfThisProductStored" min="0">
-				</mat-form-field>	
-			</td>
-			
-		</ng-container>
-
-		<!-- Unit info -->
-		<ng-container matColumnDef="amountOfUnit">
-			<th mat-header-cell *matHeaderCellDef> Eenheid </th>
-			<td mat-cell *matCellDef="let product"> 
-
-				<mat-form-field>
-					<input matInput type="number"  [(ngModel)]="product.amountOfUnit" min="0">
-				</mat-form-field>
-
-				<mat-form-field>
-					<mat-select [(value)]="product.unit">
-					  <mat-option *ngFor="let unit of units" [(value)]="unit">
-						{{unit}}
-					  </mat-option>
-					</mat-select>
-				  </mat-form-field>
-				</td>
-		</ng-container>
-
-		<!-- Delete button -->
-		<ng-container matColumnDef="delete">
-			<th mat-header-cell *matHeaderCellDef> Verwijder </th>
-			<td mat-cell *matCellDef="let product"> 
-				<button mat-icon-button class="mat-warn" (click)="delete(category, product)">
-					<i class="material-icons">delete</i>
-				</button>
-			</td>
-		</ng-container>
-	</table>
-	<br />
+			<dxi-column dataField="name" caption="Productnaam"></dxi-column>
+			<dxi-column dataField="numberOfThisProductStored" caption="Aantal"></dxi-column>
+			<dxi-column dataField="amountOfUnit" caption="Hoeveelheid"></dxi-column>
+			<dxi-column dataField="unit" caption="Eenheid">
+				<dxo-lookup [dataSource]="units"></dxo-lookup>
+			</dxi-column>
+		</dx-data-grid>
+	</div>
 </div>
 
 

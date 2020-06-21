@@ -9,7 +9,6 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from '@core/components/product-list/product-list.component';
-import { NewProductComponent } from '@core/components/new-product/new-product.component';
 
 // CSS Imports
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,33 +21,38 @@ import { NewCategoryComponent } from './core/components/new-category/new-categor
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-
+// DevExtreme
+import { DxDataGridModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    NewProductComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
   ],
   imports: [
-	BrowserModule,
-	BrowserAnimationsModule,
-	ToastrModule.forRoot(),
-	FormsModule,
-	HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    FormsModule,
+    HttpClientModule,
 
-	// CSS imports
-	MatToolbarModule,
-	MatTableModule,
-	MatInputModule,
-	MatSelectModule,
-	MatButtonModule,
-	MatDialogModule,
-	ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    // CSS imports
+    MatToolbarModule,
+    MatTableModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+
+    // DevExtreme
+    DxDataGridModule,
   ],
-  providers: [ CookieService ],
-  bootstrap: [ AppComponent ],
-  entryComponents: [ NewProductComponent, NewCategoryComponent ]
+  providers: [CookieService],
+  bootstrap: [AppComponent],
+  entryComponents: [NewCategoryComponent],
 })
-export class AppModule { }
+export class AppModule {}

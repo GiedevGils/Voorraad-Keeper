@@ -1,61 +1,36 @@
 h1 {
-    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
-    font-weight: 200;
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 20px;
+  font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI',
+    'Helvetica Neue', 'Trebuchet MS', Verdana;
+  font-weight: 200;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
-    font-weight: 100;
-    font-size: 28px;
-	margin-bottom: 5px;
-	display: inline-block;
+  font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI',
+    'Helvetica Neue', 'Trebuchet MS', Verdana;
+  font-weight: 100;
+  font-size: 28px;
+  display: inline-block;
+  margin-top: 0.3em;
+  margin-bottom: 0px;
 }
 
-
-
-/* TODO: Fix mobile design using @media tags. Make sure delete category and add product are on new line on smaller devices. Potentiall decrease the size of the "unit" part of the table on mobile	  */
-
-
-.category {
-	margin-left: 5%;
-	margin-right: 5%;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 15px;
+  padding-bottom: 20px;
 }
 
-.fixed-action-btn :hover {
-	cursor: pointer;
+.card:first-child {
+	margin-top: 50px;
 }
 
-table {
-	width: 100%;
-	table-layout: fixed;
-}
-
-mat-form-field {
-	margin-right: 2%;
-	width: 48%;
-}
-
-.mat-column-name mat-form-field {
-	width: 80%;
-}
-
-.mat-column-name {
-	width: 24%;
-}
-
-.mat-column-numberOfThisProductStored {
-	width: 20%;
-}
-
-.mat-column-amountOfUnit {
-	width: 45%;
-}
-
-.mat-column-delete {
-	width: 6%;
+.container {
+  padding: 2px 16px;
 }
 
 .bottom-right {
@@ -64,35 +39,18 @@ mat-form-field {
 	bottom: 1em;
 }
 
-.add-product {
-	display: inline;
-	top: -0.3em;
-	margin-left: 1em;
-}
-
-.add-product-icon {
-	display: inline-flex;
-}
-
-.add-product-content {
-	display: inline-flex;
-	margin-top: 0.2em;
-}
-
 hr {
 	width: 99%;
+	margin-bottom: 2em;
 }
 
-.add-category {
-	margin-left: 1em;
-	margin-right: 2em;
-	float: right;
+.card-header {
+	display: inline;
 }
 
-.add-category-icon {
-	display: inline-flex;
-}
-
-.add-category-content {
-	display: inline-flex;
+.card-header > i {
+  float: right;
+  color: #255783;
+  margin-top: 0.3em;
+  font-size: x-large;
 }
