@@ -1,0 +1,16 @@
+{
+  "name": "Voorraad Keeper",
+  "short_name": "Voorraad Keeper",
+  "theme_color": "#3d3d3d",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "./index.html",
+  "icons": [
+    {
+      "src": "assets/icons/icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
