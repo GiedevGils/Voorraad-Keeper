@@ -14,6 +14,11 @@ h2 {
 	display: inline-block;
 }
 
+
+
+/* TODO: Fix mobile design using @media tags. Make sure delete category and add product are on new line on smaller devices. Potentiall decrease the size of the "unit" part of the table on mobile	  */
+
+
 .category {
 	margin-left: 5%;
 	margin-right: 5%;
@@ -79,10 +84,9 @@ hr {
 }
 
 .add-category {
-	top: -0.3em;
 	margin-left: 1em;
-	float: right;
 	margin-right: 2em;
+	float: right;
 }
 
 .add-category-icon {
