@@ -49,7 +49,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getCategories().subscribe(data => {
       this.categories = data;
 
-      if (!this.categories || this.categories.length == 0) {
+      if (!this.categories || this.categories.length === 0) {
         this.toast('Er zijn geen gegevens gevonden. Begin met invullen!');
       }
     });
@@ -61,11 +61,11 @@ export class ProductListComponent implements OnInit {
 
   delete(category?: Category, product?: Product) {
     if (category && product) {
-      let catIndex = this.categories.indexOf(category);
-      let productIndex = this.categories[catIndex].products.indexOf(product);
+      const catIndex = this.categories.indexOf(category);
+      const productIndex = this.categories[catIndex].products.indexOf(product);
       this.categories[catIndex].products.splice(productIndex, 1);
     } else if (category && !product) {
-      let catIndex = this.categories.indexOf(category);
+      const catIndex = this.categories.indexOf(category);
       this.categories.splice(catIndex, 1);
     }
 
@@ -87,12 +87,12 @@ export class ProductListComponent implements OnInit {
   openNewProductDialog(category: Category): void {
     const dialogRef = this.dialog.open(NewProductComponent, {
       width: '75%',
-      data: { category: category, units: this.units }
+      data: { category, units: this.units }
     });
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        let catIndex = this.categories.indexOf(category);
+        const catIndex = this.categories.indexOf(category);
         this.categories[catIndex].products.push(res);
         this.save();
         this.rerender();
