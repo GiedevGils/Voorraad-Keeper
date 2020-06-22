@@ -1,21 +1,20 @@
-<h1>Categorieën</h1>
 <button mat-stroked-button class="mat-basic add-category" (click)="openNewCategoryDialog()">
 	<i class="material-icons add-category-icon">add</i>
 	<div class="add-category-content">Nieuwe Categorie</div>
 </button>
-<hr>
 
 <div class="card" *ngFor="let category of categories">
 	<div class="container">
 		<div class="card-header">
 			<h2>{{category.name}}</h2>
-			<i class="material-icons delete-category-icon" (click)="delete(category)">delete</i>
-			<i class="material-icons edit-category-icon">edit</i>
+			<div class="seperator"></div>
+			<i class="material-icons edit-category-icon" (click)="openNewCategoryDialog(category)"  title="Pas categorie aan">edit</i>
+			<i class="material-icons delete-category-icon" (click)="delete(category)" title="Verwijder categorie">delete</i>
 
 		</div>
 
-		<dx-data-grid [dataSource]="category.products" (onRowUpdated)="save()">
-			<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+		<dx-data-grid [dataSource]="category.products" (onRowUpdated)="save()" [columnHidingEnabled]="true">
+			<dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
 			</dxo-editing>
 
 			<dxi-column dataField="name" caption="Productnaam"></dxi-column>

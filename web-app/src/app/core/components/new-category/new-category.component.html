@@ -1,4 +1,10 @@
-<h3>Nieuwe categorie toevoegen</h3>
+
+<div *ngIf="changeOrAdd">
+	<h3>Categorie aanpassen</h3>
+</div>
+<div *ngIf="!changeOrAdd">
+	<h3>Nieuwe categorie toevoegen</h3>
+</div>
 
 <div mat-dialog-content>
 	<mat-form-field>
@@ -6,6 +12,11 @@
 	</mat-form-field>
 </div>
 <div mat-dialog-actions>
-	<button mat-button [mat-dialog-close]="categoryName" class="mat-primary" cdkFocusInitial>Toevoegen</button>
+	<div *ngIf="changeOrAdd">
+		<button mat-button [mat-dialog-close]="categoryName" class="mat-primary" cdkFocusInitial>Aanpassen</button>
+	</div>
+	<div *ngIf="!changeOrAdd">
+		<button mat-button [mat-dialog-close]="categoryName" class="mat-primary" cdkFocusInitial>Toevoegen</button>
+	</div>
 	<button mat-button (click)="onNoClick()" class="mat-warn">Annuleren</button>
 </div>

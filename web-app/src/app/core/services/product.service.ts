@@ -4,7 +4,6 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { of, Observable, empty } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Unit } from '@core/enums/units.enum';
 import { HttpClient } from '@angular/common/http';
 
 import { Config } from '@assets/config/config';
@@ -19,42 +18,7 @@ const webUrl = 'http://' + Config.apiUrl + ':' + Config.apiPort;
 export class ProductService {
   constructor(private cookies: CookieService, private http: HttpClient) {}
 
-  categories: Category[] = [
-    {
-      name: 'Kelder',
-      products: [
-        {
-          name: 'Pasta',
-          numberOfThisProductStored: 1,
-          amountOfUnit: 250,
-          unit: Unit.gr,
-        },
-        {
-          name: 'Kippensoep',
-          numberOfThisProductStored: 1,
-          amountOfUnit: 1,
-          unit: Unit.L,
-        },
-      ],
-    },
-    {
-      name: 'Koelkast',
-      products: [
-        {
-          name: 'Cola',
-          numberOfThisProductStored: 2,
-          amountOfUnit: 2,
-          unit: Unit.L,
-        },
-        {
-          name: 'Mona Toetje',
-          numberOfThisProductStored: 1,
-          amountOfUnit: 2,
-          unit: Unit.pak,
-        },
-      ],
-    },
-  ];
+  categories: Category[];
 
   // Get
   public getCategories(): Observable<Category[]> {
@@ -154,8 +118,7 @@ export class ProductService {
           categories: this.categories,
         })
         .pipe(catchError((err) => this.handleError<void>(1)))
-        .subscribe();
-      console.log('Saved data online');
+        .subscribe(data => console.log('Saved data online'));
     }
   }
 

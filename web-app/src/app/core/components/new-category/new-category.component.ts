@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Product } from '@core/models/product.model';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-category',
@@ -10,6 +11,7 @@ import { Product } from '@core/models/product.model';
 })
 export class NewCategoryComponent implements OnInit {
   categoryName: string;
+  changeOrAdd: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<NewCategoryComponent>,
@@ -18,6 +20,10 @@ export class NewCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.categoryName = this.data.categoryName;
+
+    if (this.categoryName) {
+      this.changeOrAdd = true;
+    }
   }
 
   onNoClick(): void {

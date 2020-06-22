@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-
     this.units = Object.values(this.unitEnum);
   }
 
@@ -36,6 +35,7 @@ export class ProductListComponent implements OnInit {
       this.categories = data;
 
       if (!this.categories || this.categories.length === 0) {
+        this.categories = [];
         this.toast('Er zijn geen gegevens gevonden. Begin met invullen!');
       }
     });
@@ -46,7 +46,7 @@ export class ProductListComponent implements OnInit {
   }
 
   delete(category?: Category, product?: Product) {
-    console.log(category)
+    console.log(category);
     if (category && product) {
       const catIndex = this.categories.indexOf(category);
       const productIndex = this.categories[catIndex].products.indexOf(product);
@@ -64,19 +64,28 @@ export class ProductListComponent implements OnInit {
     this.toast('Gegevens zijn opgeslagen');
   }
 
-  openNewCategoryDialog() {
-    const dialogRef = this.dialog.open(NewCategoryComponent, {
-      width: '75%',
-      data: { categoryName: '' },
-    });
+  openNewCategoryDialog(cat?: Category) {
+    let dialogRef;
+    if (cat == null) {
+      dialogRef = this.dialog.open(NewCategoryComponent, {
+        width: '75%',
+        data: { categoryName: null },
+      });
+    } else {
+      dialogRef = this.dialog.open(NewCategoryComponent, {
+        width: '75%',
+        data: { categoryName: cat.name },
+      });
+    }
 
     dialogRef.afterClosed().subscribe((res) => {
-      console.log(res);
-      console.log(typeof res);
-
       if (res) {
-        this.categories.push({ name: res, products: [] });
-        this.save();
+        if (cat != null) {
+          cat.name = res;
+        } else {
+          this.categories.push({ name: res, products: [] });
+          this.save();
+        }
       }
     });
   }

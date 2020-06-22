@@ -3,8 +3,12 @@
 	"compilerOptions": {
 		"baseUrl": "./src",
 		"paths": {
-			"@core/*": [ "app/core/*"],
-			"@assets/*": ["assets/*"]
+			"@core/*": [
+				"app/core/*"
+			],
+			"@assets/*": [
+				"assets/*"
+			]
 		},
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,
@@ -23,7 +27,7 @@
 			"dom"
 		]
 	},
-	"angularCompilerOptions": { 
+	"angularCompilerOptions": {
 		"fullTemplateTypeCheck": false,
 		"strictInjectionParameters": true
 	}
